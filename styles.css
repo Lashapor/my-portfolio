@@ -1,3 +1,7 @@
+body {
+    background-color: rgb(213, 234, 252);
+}
+
 h1 {
   text-align: center;
   color: rgb(3, 30, 70);
@@ -16,4 +20,5 @@ h1 {
   width: 580px;
   height: 300px;
   border: 1px solid rgb(2, 2, 43);
+  border-radius: 10px;
 }
