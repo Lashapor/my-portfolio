@@ -860,7 +860,7 @@ a {
 }
 
 a:hover {
-  color: #fff
+  color: #f76b06;
 }
 
 .button {
@@ -1711,9 +1711,9 @@ section {
 
 .single table thead {
   background: #0C1335;
-  color: #FF9F5A;
+  color: wheat;
   text-align: left;
-  font-weight: 600
+  font-weight: 800
 }
 
 .single table thead th {
