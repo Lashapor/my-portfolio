@@ -1,0 +1,141 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HorizontalCard from "../components/HorizontalCard.astro";
+---
+
+<BaseLayout title="Projects" sideBarActiveItemID="projects">
+    <div>
+        <div class="text-3xl w-full font-bold mb-5">My Last Projects</div>
+    </div>
+
+    <HorizontalCard
+        title="Allasso Charts"
+        img="/projects/allasso-charts.png"
+        desc="Quantitative trading visualizations with React and D3.js. Custom chart systems for algorithmic trading results, market data, and options strategies."
+        url="https://www.allasso.ch/"
+        badge="Advanced options analytics"
+    />
+    <div class="divider my-0"></div>
+    <HorizontalCard
+        title="ETF Insider"
+        img="/projects/etf-insider-app.png"
+        desc="Portfolio analytics platform that examines ETF holdings to identify overlaps and inefficiencies for optimized portfolio construction."
+        url="https://etfinsider.co/app"
+        badge="LIVE"
+    />
+    <div class="divider my-0"></div>
+    <HorizontalCard
+        title="ETF Insider - Analysis Pages"
+        img="/projects/etf-insider-next.png"
+        desc="Next.js app providing comprehensive ETF analysis with fundamentals, performance charts, sector allocation, and real-time market insights."
+        url="https://etfinsider.co/analysis-quote/qqq"
+        badge="LIVE"
+    />
+
+    <div>
+        <div class="text-3xl w-full font-bold mb-2 mt-10">Charts</div>
+        <p class="text-gray-500">
+            Most of my charts are private! Sharing any type of charts, examples
+            here:
+        </p>
+
+        <HorizontalCard
+            title="Technical Analysis Charts"
+            img="/projects/bitcoin-market-analysis.png"
+            desc="Real-time market data visualization with custom technical indicators (SMA, RSI, MACD) to identify trading opportunities across crypto, stocks, and ETFs."
+            enlargeable={true}
+        />
+        <HorizontalCard
+            title="Organizational Hierarchy Visualization"
+            img="/projects/custom-org-chart.png"
+            desc="Interactive org charts for complex company structures, enabling stakeholders to navigate team relationships and reporting lines efficiently."
+            enlargeable={true}
+        />
+        <HorizontalCard
+            title="Real-Time Geographic Data Maps"
+            img="/projects/maps.png"
+            desc="Live geospatial visualizations tracking dynamic data across regions, perfect for monitoring market trends, demographics, or distribution patterns."
+            enlargeable={true}
+        />
+        <HorizontalCard
+            title="Multi-Level Data Breakdown"
+            img="/projects/sunburst.png"
+            desc="Sunburst charts revealing nested relationships in portfolio allocations, sector distributions, or categorical hierarchies at a glance."
+            enlargeable={true}
+        />
+        <HorizontalCard
+            title="Portfolio Overlap Analysis"
+            img="/projects/venn-diagram.png"
+            desc="Interactive Venn diagrams identifying shared holdings and correlations between funds, ETFs, or asset groups to optimize diversification."
+            enlargeable={true}
+        />
+        <HorizontalCard
+            title="Custom Analytics Dashboards"
+            img="/projects/interactive-dashboards.png"
+            desc="Unified command centers consolidating multiple data sources into actionable KPIs and metrics for data-driven decision making."
+            enlargeable={true}
+        />
+        <HorizontalCard
+            title="Advanced Trading Indicators"
+            img="/projects/trading-analysis-charts.png"
+            desc="Custom quantitative analysis visualizations translating complex trading algorithms and backtesting results into interpretable insights."
+            enlargeable={true}
+        />
+        <HorizontalCard
+            title="Equal-Area Geographic Visualization"
+            img="/projects/hex-world-map.png"
+            desc="Hexagonal tile maps eliminating geographic size bias, ensuring fair visual comparison across regions for demographic or economic data."
+            enlargeable={true}
+        />
+        <HorizontalCard
+            title="Dynamic Parameter Exploration"
+            img="/projects/charts-with-live-controllers.png"
+            desc="Interactive controls enabling real-time scenario analysis and sensitivity testing, allowing users to explore data relationships through parameter adjustments."
+            enlargeable={true}
+        />
+    </div>
+
+    <div>
+        <div class="text-3xl w-full font-bold mb-5 mt-10">Websites</div>
+    </div>
+
+    <HorizontalCard
+        title="Workforce Almanac"
+        img="/projects/workforcealmanac.png"
+        desc="Geospatial platform mapping 20,000+ US workforce training providers, enabling policymakers and researchers to optimize $2B+ in resource allocation."
+        url="https://workforcealmanac.com/"
+        badge="Harvard Kennedy School"
+    />
+    <div class="divider my-0"></div>
+    <HorizontalCard
+        title="Youth Futures Dashboard"
+        img="/projects/yff-data-dashboard.png"
+        desc="Data dashboard tracking 948,000+ NEET youth in the UK, providing real-time insights to identify regional disparities and intervention opportunities."
+        url="https://yff-data-dashboard-prd.azurewebsites.net/"
+        badge="Youth Futures Foundation"
+    />
+    <div class="divider my-0"></div>
+    <HorizontalCard
+        title="Economy in Place"
+        img="/projects/economyinplace.png"
+        desc="Interactive platform analyzing 700+ US labor markets with economic indicators and policy tracking for journalists, researchers, and policymakers."
+        url="https://economyinplace.com/"
+        badge="Harvard Kennedy School"
+    />
+    <div class="divider my-0"></div>
+    <HorizontalCard
+        title="Realstats"
+        img="/projects/realstats.png"
+        desc="Data journalism platform transforming complex societal topics into digestible articles with interactive visualizations for general audiences."
+        url="https://realstats.app"
+        badge="Data Journalism"
+    />
+    <div class="divider my-0"></div>
+    <HorizontalCard
+        title="American Opportunity Index"
+        img="/projects/american-opportunity-index.png"
+        desc="Data platform ranking America's largest employers on career growth, processing millions of employment records for worker decisions and company benchmarking."
+        url="https://americanopportunityindex.com"
+        badge="Harvard Business School"
+    />
+</BaseLayout>

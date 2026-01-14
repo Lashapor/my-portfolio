@@ -1,0 +1,112 @@
+---
+const { title, img, desc, url, badge, tags, target = "_blank", enlargeable = false } = Astro.props;
+import { Image } from "astro:assets";
+const tag_url = url?.split("/").slice(0, -1).join("/") + "/tag";
+const modalId = `modal-${title.replace(/\s+/g, '-').toLowerCase()}`;
+---
+
+<div
+  class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]"
+>
+  {enlargeable ? (
+    <div class="cursor-pointer" onclick={`document.getElementById('${modalId}').showModal()`}>
+      <div class="hero-content flex-col md:flex-row">
+        {
+          img && (
+            <Image
+              src={img}
+              width={750}
+              height={422}
+              format="webp"
+              alt={title}
+              class="max-w-full md:max-w-[13rem] rounded-lg"
+            />
+          )
+        }
+        <div class="grow w-full">
+          <h1 class="text-xl font-bold">
+            {title}
+            {badge && <div class="badge badge-secondary mx-2">{badge}</div>}
+          </h1>
+          <p class="py-1 text-1xl">{desc}</p>
+          <div class="card-actions justify-end">
+            {
+              tags &&
+                tags.map((tag) => (
+                  <a href={`${tag_url}/${tag}`} class="badge badge-outline">
+                    {tag}
+                  </a>
+                ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <dialog id={modalId} class="modal modal-open:flex modal-open:items-center modal-open:justify-center">
+      <div class="relative flex items-center justify-center min-h-screen w-full px-5 md:px-0">
+        {
+          img && (
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl w-full md:w-auto" style="max-width: calc(100vw - 2.5rem); max-height: 60vh;">
+              <style>
+                {`@media (min-width: 768px) {
+                  #${modalId} [style*="max-width"] {
+                    max-width: 60vw !important;
+                  }
+                }`}
+              </style>
+              <Image
+                src={img}
+                width={1500}
+                height={844}
+                format="webp"
+                alt={title}
+                class="block max-w-full max-h-[60vh] w-auto h-auto"
+              />
+              <form method="dialog" class="absolute top-3 right-3">
+                <button class="btn btn-sm btn-circle btn-ghost bg-base-100/90 backdrop-blur-sm hover:bg-base-200 shadow-lg">✕</button>
+              </form>
+            </div>
+          )
+        }
+      </div>
+      <form method="dialog" class="modal-backdrop bg-black/60 backdrop-blur-sm fixed inset-0">
+        <button>close</button>
+      </form>
+    </dialog>
+  ) : (
+    <a href={url} target={target}>
+      <div class="hero-content flex-col md:flex-row">
+        {
+          img && (
+            <Image
+              src={img}
+              width={750}
+              height={422}
+              format="webp"
+              alt={title}
+              class="max-w-full md:max-w-[13rem] rounded-lg"
+            />
+          )
+        }
+        <div class="grow w-full">
+          <h1 class="text-xl font-bold">
+            {title}
+            {badge && <div class="badge badge-secondary mx-2">{badge}</div>}
+          </h1>
+          <p class="py-1 text-1xl">{desc}</p>
+          <div class="card-actions justify-end">
+            {
+              tags &&
+                tags.map((tag) => (
+                  <a href={`${tag_url}/${tag}`} class="badge badge-outline">
+                    {tag}
+                  </a>
+                ))
+            }
+          </div>
+        </div>
+      </div>
+    </a>
+  )}
+</div>

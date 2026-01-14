@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HorizontalCard from "../components/HorizontalCard.astro";
+---
+
+<BaseLayout title="Services" sideBarActiveItemID="services">
+  <div>
+    <div class="text-3xl w-full font-bold mb-5">Professional Services</div>
+  </div>
+
+  <HorizontalCard
+    title="Interactive Data Visualization"
+    img="/post_img.webp"
+    desc="Transform complex data into engaging, interactive visualizations using D3.js, React, and modern web technologies. Perfect for analytics platforms, dashboards, and data-driven applications that need custom charts and visual storytelling."
+    url="#"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Custom Chart Development"
+    img="/post_img.webp"
+    desc="Design and build high-performance custom charts tailored to your specific data needs. Specialized in complex financial visualizations, real-time data rendering, and scalable chart systems that handle large datasets efficiently."
+    url="#"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Live Dashboard Creation"
+    img="/post_img.webp"
+    desc="Build real-time dashboards with dynamic data updates, interactive filtering, and responsive design. Integrate with your existing APIs and data sources to create powerful monitoring and analytics tools for your business."
+    badge="POPULAR"
+    url="#"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Frontend Development & UI Systems"
+    img="/post_img.webp"
+    desc="Full-stack frontend development using React, Next.js, and TypeScript. Build scalable component libraries, design systems, and modern web applications with clean architecture and best practices."
+    url="#"
+  />
+</BaseLayout>

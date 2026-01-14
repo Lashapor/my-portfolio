@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TimeLineElement from "../components/cv/TimeLine.astro";
+---
+
+<BaseLayout title="Resume" sideBarActiveItemID="cv">
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Profile</div>
+  </div>
+
+  <div class="mb-10 text-justify">
+    Frontend engineer with 4+ years of experience building high-performance web applications and complex data visualizations. 
+    Specialized in React, Next.js, TypeScript, and D3.js with a strong focus on scalable UI systems and custom chart development. 
+    Backed by 3 years of management experience, bringing exceptional communication skills and the ability to translate client 
+    requirements into elegant technical solutions. Self-starter comfortable with ambiguity, rapid prototyping, and owning 
+    projects from concept to production.
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Education</div>
+  </div>
+
+  <div class="time-line-container grid gap-4 mb-10">
+    <TimeLineElement
+      title="Bachelor of Science, Construction Computer Design"
+      subtitle="2013 to 2017 at Georgian Technical University, Tbilisi, Georgia"
+    />
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Experience</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="Data Visualization Developer at Allasso"
+      subtitle="From June 2024 to Present (part-time) at Allasso, Remote"
+    >
+      Build interactive data visualizations for a fintech SaaS platform using React and D3.js. Design and implement custom complex chart systems with a focus on performance at scale. Collaborate with designers and PMs on rapid prototyping and iterative development. Ensure consistent UI behavior and maintainable codebase across visualization components. <a href="https://www.allasso.ch" target="_blank" class="underline">allasso.ch</a>
+    </TimeLineElement>
+    <TimeLineElement
+      title="D3.js Developer at ETF Insider"
+      subtitle="From February 2023 to Present (part-time) at ETF Insider, Remote"
+    >
+      Architect and develop a frontend data visualization environment for the ETF analytics platform. Build large-scale interactive charts with optimized rendering performance. Design clean data flows and component architecture for complex financial visualizations. <a href="https://etfinsider.co" target="_blank" class="underline">etfinsider.co</a>
+    </TimeLineElement>
+    <TimeLineElement
+      title="Frontend & Data Visualization Engineer"
+      subtitle="From January 2022 to Present at Freelance, Remote"
+    >
+      Design and build advanced interactive charts and UI systems for analytics products. Deliver data visualizations for global organizations, including Harvard, the Schultz Family Foundation, and the Burning Glass Institute. Public work examples: <a href="https://americanopportunityindex.com" target="_blank" class="underline">americanopportunityindex.com</a>, <a href="https://data.youthfuturesfoundation.org/" target="_blank" class="underline">youthfuturesfoundation.org</a>, <a href="https://etfinsider.co/app/" target="_blank" class="underline">etfinsider.co/app</a>. Upwork Top Rated Plus with 100% Job Success Score.
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Skills</div>
+  </div>
+
+  <ul class="list-disc md:columns-5 columns-2 mx-6">
+    <li>React</li>
+    <li>TypeScript</li>
+    <li>JavaScript</li>
+    <li>Next.js</li>
+    <li>Svelte</li>
+    <li>D3.js</li>
+    <li>SVG</li>
+    <li>Canvas</li>
+    <li>HTML5</li>
+    <li>CSS3</li>
+    <li>Tailwind CSS</li>
+    <li>Node.js</li>
+    <li>Python</li>
+    <li>Git</li>
+    <li>Data Visualization</li>
+  </ul>
+</BaseLayout>
