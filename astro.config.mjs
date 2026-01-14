@@ -5,7 +5,6 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://Lashapor.github.io',
-  base: '/my-portfolio',
+  site: 'https://your-site.vercel.app',
   integrations: [mdx(), sitemap(), tailwind()]
 });
