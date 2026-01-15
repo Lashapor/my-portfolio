@@ -1,0 +1,39 @@
+---
+import fs from 'fs';
+import path from 'path';
+
+export async function getStaticPaths() {
+  const projectsDir = path.join(process.cwd(), 'src/projects');
+  
+  // Check if directory exists
+  if (!fs.existsSync(projectsDir)) {
+    return [];
+  }
+  
+  // Get all HTML files from projects directory
+  const files = fs.readdirSync(projectsDir)
+    .filter(file => file.endsWith('.html'));
+  
+  return files.map(file => ({
+    params: { 
+      slug: file.replace('.html', '') 
+    },
+    props: { 
+      filename: file 
+    }
+  }));
+}
+
+const { slug } = Astro.params;
+const { filename } = Astro.props;
+
+// Read the HTML file content
+const projectsDir = path.join(process.cwd(), 'src/projects');
+const filePath = path.join(projectsDir, filename);
+const htmlContent = fs.readFileSync(filePath, 'utf-8');
+
+// Set response to serve raw HTML
+Astro.response.headers.set('Content-Type', 'text/html');
+---
+
+<Fragment set:html={htmlContent} />
