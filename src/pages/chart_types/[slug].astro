@@ -1,0 +1,172 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { blogs } from "../../../public/chart_types/data.js";
+
+export async function getStaticPaths() {
+  return blogs.map((chart) => ({
+    params: { slug: chart.slug },
+    props: { chart },
+  }));
+}
+
+const { chart } = Astro.props;
+const { slug } = Astro.params;
+
+// Find related charts (excluding current one)
+const relatedCharts = blogs.filter(c => c.slug !== slug).slice(0, 3);
+
+// Find prev/next navigation
+const currentIndex = blogs.findIndex(c => c.slug === slug);
+const prevChart = currentIndex > 0 ? blogs[currentIndex - 1] : null;
+const nextChart = currentIndex < blogs.length - 1 ? blogs[currentIndex + 1] : null;
+---
+
+<BaseLayout 
+  title={chart.metadata.title} 
+  description={chart.metadata.description}
+  sideBarActiveItemID="chart_types"
+>
+  <article class="prose prose-lg max-w-none">
+    <!-- Breadcrumb Navigation -->
+    <nav class="text-sm breadcrumbs mb-6">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/chart_types">Chart Types</a></li>
+        <li class="font-semibold">{chart.title}</li>
+      </ul>
+    </nav>
+
+    <!-- Article Header -->
+    <div class="mb-8">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">{chart.title}</h1>
+      <div class="flex items-center gap-4 text-sm text-gray-600 mb-6">
+        <time datetime={chart.publishDate}>
+          {new Date(chart.publishDate).toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          })}
+        </time>
+        <span>•</span>
+        <span>{chart.readTime}</span>
+      </div>
+    </div>
+
+    <!-- Featured Image -->
+    <figure class="mb-12 rounded-xl overflow-hidden shadow-xl bg-gray-50">
+      <img 
+        src={chart.img} 
+        alt={`${chart.title} visualization guide`}
+        class="w-full h-auto object-contain max-h-96"
+      />
+    </figure>
+
+    <!-- Content Sections -->
+    <div class="space-y-10">
+      {chart.sections.map((section) => (
+        <section>
+          <h2 class="text-3xl font-bold mb-4">{section.heading}</h2>
+          <p class="text-gray-700 leading-relaxed text-lg">
+            {section.text}
+          </p>
+        </section>
+      ))}
+    </div>
+
+    <!-- Tags/Keywords -->
+    {chart.metadata.keywords && (
+      <div class="mt-12 pt-8 border-t">
+        <h3 class="text-sm font-semibold text-gray-600 mb-3">Related Topics</h3>
+        <div class="flex flex-wrap gap-2">
+          {chart.metadata.keywords.map((keyword) => (
+            <span class="badge badge-outline badge-lg">{keyword}</span>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Prev/Next Navigation -->
+    {(prevChart || nextChart) && (
+      <div class="flex justify-between items-center mt-12 pt-8 border-t gap-4">
+        {prevChart ? (
+          <a 
+            href={`/chart_types/${prevChart.slug}`}
+            class="btn btn-outline flex-1 max-w-xs"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            <div class="text-left">
+              <div class="text-xs text-gray-500">Previous</div>
+              <div class="font-semibold truncate">{prevChart.title}</div>
+            </div>
+          </a>
+        ) : <div class="flex-1"></div>}
+        
+        {nextChart ? (
+          <a 
+            href={`/chart_types/${nextChart.slug}`}
+            class="btn btn-outline flex-1 max-w-xs"
+          >
+            <div class="text-right">
+              <div class="text-xs text-gray-500">Next</div>
+              <div class="font-semibold truncate">{nextChart.title}</div>
+            </div>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        ) : <div class="flex-1"></div>}
+      </div>
+    )}
+
+    <!-- Related Charts Section -->
+    {relatedCharts.length > 0 && (
+      <div class="mt-16">
+        <h2 class="text-3xl font-bold mb-8">More Chart Types</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 not-prose">
+          {relatedCharts.map((related) => (
+            <a 
+              href={`/chart_types/${related.slug}`}
+              class="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[102%]"
+            >
+              <figure class="h-40 overflow-hidden bg-gray-100">
+                <img 
+                  src={related.img} 
+                  alt={related.title}
+                  class="w-full h-full object-contain"
+                  loading="lazy"
+                />
+              </figure>
+              <div class="card-body p-4">
+                <h3 class="card-title text-base">{related.title}</h3>
+                <p class="text-sm text-gray-600 line-clamp-2">
+                  {related.sections[0].text.substring(0, 80)}...
+                </p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Back to All Charts -->
+    <div class="mt-12 text-center">
+      <a href="/chart_types" class="btn btn-primary btn-lg">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        View All Chart Types
+      </a>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

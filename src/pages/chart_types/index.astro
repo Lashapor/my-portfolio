@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { blogs } from "../../../public/chart_types/data.js";
+---
+
+<BaseLayout title="Chart Types - Data Visualization Guide" sideBarActiveItemID="chart_types">
+  <div class="mb-8">
+    <h1 class="text-5xl font-bold mb-4">Chart Types</h1>
+    <p class="text-xl text-gray-600">
+      Explore comprehensive guides on various data visualization chart types.
+      Learn when and how to use each chart for effective data communication.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {blogs.map((chart) => (
+      <a 
+        href={`/chart_types/${chart.slug}`}
+        class="card bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[102%] overflow-hidden group"
+      >
+        <figure class="h-48 overflow-hidden bg-gray-100">
+          <img 
+            src={chart.img} 
+            alt={`${chart.title} visualization example`}
+            class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title text-lg">
+            {chart.title}
+          </h2>
+          <div class="text-xs text-gray-500 mb-2">{chart.readTime}</div>
+          <p class="text-sm text-gray-600 line-clamp-2">
+            {chart.sections[0].text.substring(0, 100)}...
+          </p>
+          <div class="card-actions justify-between items-center mt-4">
+            <time class="text-xs text-gray-500" datetime={chart.publishDate}>
+              {new Date(chart.publishDate).toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+              })}
+            </time>
+            <div class="text-primary font-medium flex items-center gap-1">
+              Learn More
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
