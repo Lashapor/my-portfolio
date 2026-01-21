@@ -34,6 +34,53 @@ const {
           </main>
         </div>
         <Footer />
+        
+        <!-- Floating Projects Button (Mobile Only) -->
+        <div id="floating-projects-btn" class="fixed bottom-6 right-6 z-50 lg:hidden opacity-0 transition-opacity duration-300">
+          <a
+            href="/projects"
+            class="btn btn-primary btn-circle shadow-lg w-14 h-14 flex items-center justify-center"
+            aria-label="View Projects"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </a>
+        </div>
+        
+        <script>
+          // Show floating button on scroll for mobile
+          let lastScrollTop = 0;
+          const btn = document.getElementById('floating-projects-btn');
+          
+          window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Show button when scrolled down more than 300px
+            if (scrollTop > 300) {
+              btn?.classList.remove('opacity-0');
+              btn?.classList.add('opacity-100');
+            } else {
+              btn?.classList.remove('opacity-100');
+              btn?.classList.add('opacity-0');
+            }
+            
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+          });
+        </script>
       </div>
       {includeSidebar && <SideBar sideBarActiveItemID={sideBarActiveItemID} />}
     </div>

@@ -4,7 +4,7 @@ import HorizontalCard from "../components/HorizontalCard.astro";
 ---
 
 <BaseLayout title="Projects" sideBarActiveItemID="projects">
-    <div>
+    <div id="latest">
         <div class="text-3xl w-full font-bold mb-5">My Last Projects</div>
     </div>
 
@@ -32,7 +32,7 @@ import HorizontalCard from "../components/HorizontalCard.astro";
         badge="LIVE"
     />
 
-    <div>
+    <div id="charts">
         <div class="text-3xl w-full font-bold mb-2 mt-10">Charts</div>
         <p class="text-gray-500">
             Most of my charts are private! Sharing any type of charts, examples
@@ -101,7 +101,7 @@ import HorizontalCard from "../components/HorizontalCard.astro";
         />
     </div>
 
-    <div>
+    <div id="websites">
         <div class="text-3xl w-full font-bold mb-5 mt-10">Websites</div>
     </div>
 
@@ -145,3 +145,24 @@ import HorizontalCard from "../components/HorizontalCard.astro";
         badge="Harvard Business School"
     />
 </BaseLayout>
+
+<script>
+    // Handle smooth scrolling to sections from hash URLs
+    function scrollToSection() {
+        const hash = window.location.hash;
+        if (hash) {
+            const element = document.querySelector(hash);
+            if (element) {
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
+    }
+
+    // Scroll on page load
+    scrollToSection();
+
+    // Handle hash changes (for SPA-like navigation)
+    window.addEventListener('hashchange', scrollToSection);
+</script>
